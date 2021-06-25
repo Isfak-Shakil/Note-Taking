@@ -7,88 +7,88 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/toolbar_RL_Id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_rec01"
-        android:padding="10dp">
-
-
-        <!--Tab  -->
-        <LinearLayout
-            android:background="@drawable/shape_rec03"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp">
-
-            <!-- device-->
-            <!-- cloud-->
-            <TextView
-                android:id="@+id/deviceTvId"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/shape_rect04"
-                android:gravity="center"
-                android:text="Device"
-                android:textColor="@android:color/black" />
-
-            <TextView
-                android:id="@+id/cloudTvId"
-                android:layout_weight="1"
-                android:textColor="@android:color/white"
-                android:gravity="center"
-                android:text="Cloud"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"/>
-
-        </LinearLayout>
-
-    </RelativeLayout>
-    <!-- device Ui-->
-    <RelativeLayout
-        android:id="@+id/devicesRl_Id"
-        android:layout_below="@id/toolbar_RL_Id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/deviceRecycler_Id"
-            tools:listitem="@layout/note_item"
-            app:stackFromEnd="true"
-            app:reverseLayout="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-    </RelativeLayout>
-    <!-- cloud Ui-->
-    <RelativeLayout
-        android:visibility="gone"
-        android:id="@+id/cloudRl_Id"
-        android:layout_below="@id/toolbar_RL_Id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!-- recycler view : show orders (newest firs) -->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cloudRecyclerId"
-            tools:listitem="@layout/note_item"
-            app:stackFromEnd="true"
-            app:reverseLayout="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recyclerViewId"-->
-<!--        tools:listitem="@layout/note_item"-->
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/toolbar_RL_Id"-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"/>-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/shape_rec01"-->
+<!--        android:padding="10dp">-->
+
+
+<!--        &lt;!&ndash;Tab  &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:background="@drawable/shape_rec03"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="@dimen/_5sdp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_40sdp">-->
+
+<!--            &lt;!&ndash; device&ndash;&gt;-->
+<!--            &lt;!&ndash; cloud&ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/deviceTvId"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/shape_rect04"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Device"-->
+<!--                android:textColor="@android:color/black" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/cloudTvId"-->
+<!--                android:layout_weight="1"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Cloud"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </RelativeLayout>-->
+<!--    &lt;!&ndash; device Ui&ndash;&gt;-->
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/devicesRl_Id"-->
+<!--        android:layout_below="@id/toolbar_RL_Id"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/deviceRecycler_Id"-->
+<!--            tools:listitem="@layout/note_item"-->
+<!--            app:stackFromEnd="true"-->
+<!--            app:reverseLayout="true"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+
+<!--    </RelativeLayout>-->
+<!--    &lt;!&ndash; cloud Ui&ndash;&gt;-->
+<!--    <RelativeLayout-->
+<!--        android:visibility="gone"-->
+<!--        android:id="@+id/cloudRl_Id"-->
+<!--        android:layout_below="@id/toolbar_RL_Id"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--        &lt;!&ndash; recycler view : show orders (newest firs) &ndash;&gt;-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/cloudRecyclerId"-->
+<!--            tools:listitem="@layout/note_item"-->
+<!--            app:stackFromEnd="true"-->
+<!--            app:reverseLayout="true"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+
+<!--    </RelativeLayout>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewId"
+        tools:listitem="@layout/note_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
