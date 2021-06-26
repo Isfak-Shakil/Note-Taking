@@ -1,14 +1,22 @@
 package com.example.notetaking;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,11 +28,13 @@ public class MainActivity extends AppCompatActivity {
     public static final int ADD_NOTE_REQUEST=1;
 
     private NoteViewModel noteViewModel;
+  AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        builder=new AlertDialog.Builder(this);
 
         FloatingActionButton buttonAddNote=findViewById(R.id.addNoteButtonId);
         buttonAddNote.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setNotes(notes);
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                builder.setMessage("Do you want to delete this Notes?")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                noteViewModel.delete(adapter.getNoteAt( viewHolder.getAdapterPosition()));
+                                Toast.makeText(MainActivity.this,"Note Deleted",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert=builder.create();
+                alert.show();
+            }
+        }).attachToRecyclerView(recyclerView);
     }
 
     @Override
@@ -71,7 +111,42 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return true;
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.delete_All_Notes:
 
+              builder.setMessage("Do you want to delete all Notes?")
+              .setCancelable(true)
+               .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       noteViewModel.deleteAllNote();
+                       Toast.makeText(MainActivity.this,"All note deleted",Toast.LENGTH_SHORT).show();
+                   }
+               })
+                      .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                          @Override
+                          public void onClick(DialogInterface dialog, int which) {
+                              dialog.cancel();
+                          }
+                      });
+              AlertDialog alert=builder.create();
+              alert.show();
+
+//                noteViewModel.deleteAllNote();
+//                Toast.makeText(MainActivity.this,"All note deleted",Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

@@ -38,6 +38,10 @@ private List<Note> noteList=new ArrayList<>();
        notifyDataSetChanged();
     }
 
+    public Note getNoteAt(int position){
+        return noteList.get(position);
+    }
+
 
 
     class NoteHolder extends RecyclerView.ViewHolder {
