@@ -91,4 +91,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNoteButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:borderWidth="0dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_add_white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/_8sdp"
+        android:elevation="@dimen/_8sdp"
+        android:layout_margin="@dimen/_32sdp"
+        android:layout_marginBottom="@dimen/_32sdp"
+      />
+
+
 </RelativeLayout>
